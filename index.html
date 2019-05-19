@@ -1,0 +1,158 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <style>
+        
+        header{
+            background: rgb(71,255,212); /* Old browsers */
+            background: -moz-linear-gradient(45deg, rgba(71,255,212,1) 0%, rgba(67,143,224,1) 52%, rgba(196,58,224,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ffd4', endColorstr='#c43ae0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+            height:200px;
+            color : white;
+            display:flex;
+            justify-content: center;
+        }
+        header div{
+            display:flex;
+            width:1000px;
+            justify-content: left;
+            
+        }
+        header div h1{
+            padding:50px
+        }
+        .container{
+            display:flex;
+            flex-direction: column;
+            align-items : center;
+            margin:50px;
+        }
+        .cardWrapper{
+            display:grid;
+            grid-gap : 20px;
+            grid-auto-rows : minmax(70px, 250px);
+            grid-template-columns: repeat(3, 170px);
+            margin:50px;
+        }
+        .card{
+            box-shadow : 2px 2px 5px 1px gray; /*x y blur spread color*/
+            display:flex;
+            flex-direction : column;
+            align-items : center;
+        }
+        .card:hover{
+            position:relative;
+            top:-10px;
+        }
+        .card a{
+            color : black;
+            text-decoration: none;
+        }
+        .card .image{
+            height:80px; 
+            background-color : whitesmoke;
+            width:93%;
+            text-align: center;
+        }
+        .card img{
+            flex-shrink : 1;
+            height:100%;
+        }
+        .card section{
+            padding:5px;
+        }
+        .card h2{
+            margin : 10px;
+        }
+        footer{
+            background-color : paleturquoise;
+            height:100px;
+        }
+        .content{
+            flex-grow : 4;
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1>Web Security<br/> Demo Site</h1>
+            </div>
+        </header>
+        
+        <section class="container">
+            <h2>Category</h2>
+            <div class="cardWrapper">
+                <div class="card">
+                    <a href="#a">
+                        <h2>XSS</h2>
+                        <section class="content">
+                            문서에 악성코드를 기입하는 공격입니다.
+                        </section>
+                        <section class="image">
+                            <img src="img/antivirus.png" />
+                        </section>
+                        <section>more</section>
+                    </a>
+                </div>
+                <div class="card">
+                    <h2>XSS</h2>
+                    <section class="content">
+                        문서에 악성코드를 기입하는 공격입니다.
+                    </section>
+                    <section class="image">
+                        <img src="img/protection.png" />
+                    </section>
+                    <section>more</section>
+                </div>
+                <div class="card">
+                    <h2>XSS</h2>
+                    <section class="content">
+                        문서에 악성코드를 기입하는 공격입니다.
+                    </section>
+                    <section class="image">
+                        <img src="img/network.png" />
+                    </section>
+                    <section>more</section>
+                </div>
+                <div class="card">
+                    <h2>XSS</h2>
+                    <section class="content">
+                        문서에 악성코드를 기입하는 공격입니다.
+                    </section>
+                    <section class="image">
+                        <img src="img/danger.png" />
+                    </section>
+                    <section>more</section>
+                </div>
+                <div class="card">
+                    <h2>XSS</h2>
+                    <section class="content">
+                        문서에 악성코드를 기입하는 공격입니다.
+                    </section>
+                    <section class="image">
+                        <img src="img/computer1.png" />
+                    </section>
+                    <section>more</section>
+                </div> 
+                <div class="card">
+                    <h2>XSS</h2>
+                    <section class="content">
+                        문서에 악성코드를 기입하는 공격입니다.
+                    </section>
+                    <section class="image">
+                        <img src="img/antivirus.png" />
+                    </section>
+                    <section>more</section>
+                </div> 
+
+            </div>
+        </section>
+        <footer>푸터</footer>
+        <script>
+        
+        </script>
+    </body>
+</html>
