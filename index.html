@@ -2,58 +2,68 @@
     <head>
         <meta charset="utf-8" />
         <style>
-        
+        body{margin :0px;}
+		a{	text-decoration:none; color:black;}
         header{
-            background: rgb(71,255,212); /* Old browsers */
-            background: -moz-linear-gradient(45deg, rgba(71,255,212,1) 0%, rgba(67,143,224,1) 52%, rgba(196,58,224,1) 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ffd4', endColorstr='#c43ae0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-            height:200px;
-            color : white;
-            display:flex;
-            justify-content: center;
+			background: rgb(71,255,212); /* Old browsers */
+			background: -moz-linear-gradient(45deg, rgba(71,255,212,1) 0%, rgba(67,143,224,1) 52%, rgba(196,58,224,1) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ffd4', endColorstr='#c43ae0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+			height:200px;
+			display:flex;
+			justify-content: center;
         }
-        header div{
-            display:flex;
-            width:1000px;
-            justify-content: left;
-            
+		header a{
+			display:flex;
+			justify-content: left;
+			width:800px;
+		}
+		.headerwrapper {
+			width : 100%;
+			position:relative;
+			color : white;
+		}
+        .headerwrapper h1{
+			padding-left : 30px;
+			margin:0px;
+			position:absolute;
+			bottom:0px;
         }
-        header div h1{
-            padding:50px
-        }
-        .container{
+        .cardContainer{
             display:flex;
             flex-direction: column;
             align-items : center;
             margin:50px;
         }
         .cardWrapper{
-            display:grid;
-            grid-gap : 20px;
-            grid-auto-rows : minmax(70px, 250px);
-            grid-template-columns: repeat(3, 170px);
-            margin:50px;
+            display:flex;
+            justify-content: center;
+            align-content : flex-start;
+            margin : 5px;
         }
         .card{
-            box-shadow : 2px 2px 5px 1px gray; /*x y blur spread color*/
-            display:flex;
-            flex-direction : column;
-            align-items : center;
+            width : 170px;
+            height : 260px;
+			border-radius : 8px;
+            box-shadow : 1px 1px 5px 1px gray; /*x y blur spread color*/
+			top : 0px;
+            transition : top 0.2s ease;
+            margin : 10px;
         }
         .card:hover{
             position:relative;
             top:-10px;
         }
         .card a{
-            color : black;
-            text-decoration: none;
+            display:flex;
+            flex-direction : column;
+            align-items : center;
         }
         .card .image{
-            height:80px; 
-            background-color : whitesmoke;
-            width:93%;
+            height:70px; 
+            background-color :floralwhite;
+            width:88%;
             text-align: center;
         }
         .card img{
@@ -61,32 +71,46 @@
             height:100%;
         }
         .card section{
-            padding:5px;
+            padding:10px;
         }
         .card h2{
             margin : 10px;
+        }
+        .card .content{
+            flex-grow : 4;
+            height : 65px;
+            overflow-y :hidden;
+        }
+        .content:hover{
+            overflow-y :auto;
+        }
+        .title{
+            text-align: center;
+            margin-top : 100px;
+            font-size : 1.7rem;
         }
         footer{
             background-color : paleturquoise;
             height:100px;
         }
-        .content{
-            flex-grow : 4;
-        }
+
         </style>
     </head>
     <body>
         <header>
-            <div>
-                <h1>Web Security<br/> Demo Site</h1>
-            </div>
+            <a href="index.html">
+                <div class="headerwrapper">
+                    <h1>Web&nbsp;Security<br/>Demo&nbsp;Site</h1>
+                </div>
+            </a>
         </header>
         
-        <section class="container">
-            <h2>Category</h2>
+        
+        <h2 class="title">Category</h2>
+        <section class="cardContainer">
             <div class="cardWrapper">
                 <div class="card">
-                    <a href="#a">
+                    <a href="category.html">
                         <h2>XSS</h2>
                         <section class="content">
                             문서에 악성코드를 기입하는 공격입니다.
@@ -94,62 +118,75 @@
                         <section class="image">
                             <img src="img/antivirus.png" />
                         </section>
-                        <section>more</section>
+                        <div>more</div>
                     </a>
                 </div>
                 <div class="card">
-                    <h2>XSS</h2>
-                    <section class="content">
-                        문서에 악성코드를 기입하는 공격입니다.
-                    </section>
-                    <section class="image">
-                        <img src="img/protection.png" />
-                    </section>
-                    <section>more</section>
+                    <a href="#b">
+                        <h2>XSS</h2>
+                        <section class="content">
+                            subtext
+                        </section>
+                        <section class="image">
+                            <img src="img/protection.png" />
+                        </section>
+                        <div>more</div>
+                    </a>
                 </div>
                 <div class="card">
-                    <h2>XSS</h2>
-                    <section class="content">
-                        문서에 악성코드를 기입하는 공격입니다.
-                    </section>
-                    <section class="image">
-                        <img src="img/network.png" />
-                    </section>
-                    <section>more</section>
+                    <a href="#c">
+                        <h2>XSS</h2>
+                        <section class="content">
+                            subtext subtext subtext subtext subtext subtext subtext<br/>
+                            subtext subtext subtext subtext subtext subtext subtext<br/>
+                        </section>
+                        <section class="image">
+                            <img src="img/network.png" />
+                        </section>
+                        <div>more</div>
+                    </a>
+                </div>
+            </div>   <!-- cardWrapper -->
+            <div class="cardWrapper">
+                <div class="card">
+                    <a href="#d">
+                        <h2>XSS</h2>
+                        <section class="content">
+                            문서에 악성코드를 기입하는 공격입니다.
+                        </section>
+                        <section class="image">
+                            <img src="img/danger.png" />
+                        </section>
+                        <div>more</div>
+                    </a>
                 </div>
                 <div class="card">
-                    <h2>XSS</h2>
-                    <section class="content">
-                        문서에 악성코드를 기입하는 공격입니다.
-                    </section>
-                    <section class="image">
-                        <img src="img/danger.png" />
-                    </section>
-                    <section>more</section>
+                    <a href="#e">
+                        <h2>XSS</h2>
+                        <section class="content">
+                            subtext
+                        </section>
+                        <section class="image">
+                            <img src="img/computer1.png" />
+                        </section>
+                        <div>more</div>
+                    </a>
                 </div>
                 <div class="card">
-                    <h2>XSS</h2>
-                    <section class="content">
-                        문서에 악성코드를 기입하는 공격입니다.
-                    </section>
-                    <section class="image">
-                        <img src="img/computer1.png" />
-                    </section>
-                    <section>more</section>
-                </div> 
-                <div class="card">
-                    <h2>XSS</h2>
-                    <section class="content">
-                        문서에 악성코드를 기입하는 공격입니다.
-                    </section>
-                    <section class="image">
-                        <img src="img/antivirus.png" />
-                    </section>
-                    <section>more</section>
-                </div> 
-
-            </div>
-        </section>
+                    <a href="#f">
+                        <h2>XSS</h2>
+                        <section class="content">
+                            subtext subtext subtext subtext subtext subtext subtext<br/>
+                            subtext subtext subtext subtext subtext subtext subtext<br/>
+                        </section>
+                        <section class="image">
+                            <img src="img/ui.png" />
+                        </section>
+                        <div>more</div>
+                    </a>
+                </div>
+            </div>  <!-- cardWrapper -->
+        </section>  <!-- cardContainer -->
         <footer>푸터</footer>
         <script>
         
