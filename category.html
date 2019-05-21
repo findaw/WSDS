@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		body{margin :0px;}
+		a{
+			text-decoration:none; color:black;
+		}
+		header{
+			background: rgb(71,255,212); /* Old browsers */
+			background: -moz-linear-gradient(45deg, rgba(71,255,212,1) 0%, rgba(67,143,224,1) 52%, rgba(196,58,224,1) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ffd4', endColorstr='#c43ae0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+			display:flex;
+			justify-content: center;
+        }
+		header a{
+			display:flex;
+			justify-content: left;
+			width:1000px;
+		}
+		.headerWrapper {
+			color : white;
+			display:flex;
+		}
+        .headerWrapper h1{
+			padding-left : 50px;
+			margin:0px;
+			text-align : center;
+		}
+		.category{
+			display:flex;
+			flex-direction : column;
+			align-items: center;
+		}
+		.title{
+			text-align : center;
+			margin-top:100px;
+			margin-bottom : 30px;
+		}
+		.itemContainer{
+			display:flex;
+			justify-content : center;
+			margin:20px;
+		}
+		.itemWrapper{
+			display: flex;
+			flex-direction : column;
+		}
+		.item{
+			padding:10px;
+			margin-bottom : 25px;
+			box-shadow : 1px 1px 7px 1px gray;
+			border-radius : 10px;
+			top : 0px;
+			transition : top 0.2s ease;
+		}
+		.item:hover{
+			position:relative;
+			top:-10px;
+		}
+		.item a{
+			display:flex;
+		}
+		h3{
+			margin: 0px;
+			padding : 10px;
+		}
+		.subtext{
+			width:600px;
+			max-height:120px;
+			padding : 10px;
+			overflow-y : hidden;
+		}
+		@media (max-width : 500px) { .subtext{width : 300px;}}
+		.subtext:hover{
+			overflow-y : auto;
+		}
+		.image{
+			width:80px;
+			float:right;
+		}
+		.image img{
+			width : 100%;
+		}
+		footer{
+			height:150px;
+			background-color : skyblue;
+		}
+		
+		</style>
+	</head>
+	<body>
+	<header>
+		<a href="#a">
+			<div class="headerWrapper">
+				<h1>WSDS</h1>
+			</div>
+		</a>
+	</header>
+	<section class="category">
+		<div class="title">
+			<h2>카테고리이름</h2>
+		</div>
+		<article class="content">
+			내용 subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+			subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+			subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+			subtext subtext subtext subtext subtext subtext<br/>
+		</article>
+	</section>
+	<div class="title">
+		<h2>Case</h2>
+	</div>
+	<div class="itemContainer">
+		<div class="itemWrapper">
+			<div class="item">
+				<a href="#a">
+					<div class="itemWrapper">
+						<div>
+							<h3>Case 1</h3>
+						</div>
+						<div class="subtext">
+							간략한설명
+						</div>
+					</div>
+					<div class="image">
+						<img src="img/antivirus.png" />
+					</div>
+				</a>
+			</div>
+			<div class="item">
+				<a href="#b">
+					<div class="itemWrapper">
+						<div>
+							<h3>Case 2</h3>
+						</div>
+						<div class="subtext">
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+						</div>
+					</div>
+					<div class="image">
+						<img src="img/ui.png" />
+					</div>
+				</a>
+			</div>
+			<div class="item">
+				<a href="#c" >
+					<div class="itemWrapper">
+						<div>
+							<h3>Case 3</h3>
+						</div>
+						<div class="subtext">
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+						</div>
+					</div>
+					<div class="image">
+						<img src="img/danger.png" />
+					</div>
+				</a>
+			</div>
+			<div class="item">
+				<a href="#d">
+					<div class="itemWrapper">
+						<div>
+							<h3>Case 4</h3>
+						</div>
+						<div class="subtext">
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+						</div>
+					</div>
+					<div class="image">
+						<img src="img/protection.png" />
+					</div>
+				</a>
+			</div>
+		</div> <!-- wrapper -->
+	</div> <!-- container -->
+	<footer>
+		푸터
+	</footer>
+
+	</body>
+</html>
