@@ -1,0 +1,27 @@
+body{margin :0px;}
+a{
+    text-decoration:none; color:black;
+}
+header{
+    background: rgb(71,255,212); /* Old browsers */
+    background: -moz-linear-gradient(45deg, rgba(71,255,212,1) 0%, rgba(67,143,224,1) 52%, rgba(196,58,224,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ffd4', endColorstr='#c43ae0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    display:flex;
+    justify-content: center;
+}
+header a{
+    display:flex;
+    justify-content: left;
+    width:1000px;
+}
+.headerWrapper {
+    color : white;
+    display:flex;
+}
+.headerWrapper h1{
+    padding-left : 50px;
+    margin:0px;
+    text-align : center;
+}
