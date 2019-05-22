@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="css/share.css" />
+        <style>
+            .container{
+                display:flex;
+                flex-direction: column;
+                align-items : center;
+            }
+            #fileDropZone{
+                border : 2px gray dotted;
+                width : fit-content;
+                padding : 50px;
+                background-color : white;
+            }
+            #attaced{
+                display: none;
+            }
+            ul{
+                list-style-type : none;
+                padding-left :20px;
+                margin : 5px 0px;
+            }
+            img{
+                width : 20px;    
+                margin-right : 5px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="index.html">
+                <div class="headerWrapper">
+                    <h1>WSDS</h1>
+                </div>
+            </a>
+        </header>
+
+
+        <script type="text/javascript">
+            let inputfile = document.getElementById("attaced");
+            let dropzone = document.getElementById("fileDropZone");
+            let tree = document.getElementById("tree");
+
+
+            function scanFiles(dir, node){
+                var dirReader = dir.createReader();
+                var promises = [];
+                console.log(dirReader);
+                
+                var readEntries = async (reader, node)=>{
+                    reader.readEntries(entries=>{
+                        console.log(dirReader);
+                        console.log(entries);
+                        if(!entries.length){
+                            console.log("length0");
+                        }else{
+                            for(var i = 0; i < entries.length; i++){
+                                console.log(entries[i]);
+                                if(entries[i].isFile){
+                                    console.log(entries[i]);
+                                    createFileNode(node, entries[i].name);
+                                }else if(entries[i].isDirectory){
+                                    console.log(entries[i]);
+                                    let ulNode = createDirNode(node, entries[i].name);
+                                    readEntries(entries[i].createReader(), ulNode);
+                                }
+                            }
+                        }
+                    }, err=>console.error(err.message));
+                }
+
+                readEntries(dirReader, node);
+            };
+
+
+
+
+
+
+            dropzone.addEventListener("dragover", function(e){
+                e.preventDefault();     //prevent browser handling
+                e.stopPropagation();
+                fileDropZone.style.backgroundColor = "gray";
+            }, false);
+            dropzone.addEventListener("dragleave", function(e){
+                e.preventDefault();     //prevent browser handling
+                e.stopPropagation();
+                fileDropZone.style.backgroundColor = "white";
+            }, false);
+
+            dropzone.addEventListener("drop", function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                fileDropZone.style.backgroundColor = "white";
+                console.log(e.dataTransfer);
+                
+                let items = e.dataTransfer.items;
+                console.log(items);
+                console.log(items[0]);
+
+                let item = items[0].webkitGetAsEntry();
+                console.log(item);
+                
+                
+                if(item.isFile){
+                    createFileNode(tree, item.name);
+
+                }else if(item.isDirectory){
+                    let ulNode = createDirNode(tree, item.name);
+                    scanFiles(item, ulNode);
+                }
+                
+            }, false);
+
+            function createDirNode(target, name){
+                let li = document.createElement("li");
+                let ul = document.createElement("ul");
+                let details = document.createElement("details");
+                details.open = "open";
+                let summary = document.createElement("summary");
+                let text = document.createTextNode(name);
+                let dirImage = document.createElement("img");
+                dirImage.src = "img/directory.png";
+                
+                summary.appendChild(dirImage);
+                summary.appendChild(text);
+                details.appendChild(summary);
+                details.appendChild(ul);
+                li.appendChild(details);
+                target.appendChild(li);
+
+                return ul;
+            }
+
+            function createFileNode(target, name){
+                let li = document.createElement("li");
+                let text = document.createTextNode(name);
+                let fileImage = document.createElement("img");
+                fileImage.src = "img/file.png";
+                
+                li.appendChild(fileImage);
+                li.appendChild(text);
+                target.appendChild(li);
+
+                return li;
+            }
+            inputfile.addEventListener("change", function(){
+                console.log(this.files);
+                for(let i = 0; i < this.files.length; i++){
+                    console.log("name:" + this.files[i].name);
+                    console.log("type:" + this.files[i].type);
+                    console.log("size:" + this.files[i].suze);
+                    console.log("lastModified:" + this.files[i].lastModifiedDate);
+                }   
+            });
+            
+        </script>
+
+       
+    </body>
+</html>
