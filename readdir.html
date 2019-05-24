@@ -7,26 +7,40 @@
         <style>
             .container{
                 display:flex;
+                
                 justify-content : center;
                 list-style-type : none;
             }
             #fileDropZone{
-                border : 2px gray dotted;
-                padding : 50px;
+                border : 2px dotted royalblue;
+                padding-top: 50px;
                 background-color : white;
+            }
+            #fileDropZone .text{
+                text-align : center;
             }
             #attaced{
                 display: none;
             }
             .wrapper{
-                background-color : darkslategray;
+                background-color :royalblue;
                 padding : 10px;
-                margin : 10px;
             }
             .wrapper .text{
                 color : white;
                 font-size : 1.2rem;
                 margin : 5px;
+                padding : 10px;
+            }
+            #page{
+                background-color : white;
+                width : 800px;
+                height : 1000px;
+            }
+            #tree{
+                width : 200px;
+                overflow-x : auto;
+                overflow-y : auto;
                 padding : 10px;
             }
             ul{
@@ -37,17 +51,6 @@
             img{
                 width : 20px;    
                 margin-right : 5px;
-            }
-            #page{
-                background-color : white;
-                width :  800px;
-                height : 1000px;
-            }
-            #tree{
-                width : 200px;
-                overflow-x : auto;
-                overflow-y : auto;
-                padding : 10px;
             }
 
         </style>
@@ -65,23 +68,23 @@
         
         <input type="file" name="" id="attaced" accept="" />
         <div class="container">
-            <div id="fileDropZone">이곳에 첨부할 파일을<br/>드래그하세요.</div>
+            <div id="fileDropZone">
+                <div class="text">
+                        이곳에 첨부할 파일을<br/>드래그하세요.
+                </div>
+            
+            <br/><br/><br/>
 
-
-        </div>
-
-        <br/><br/><br/>
-
-        <div class="container">
-            <div class="wrapper">
-                <div class="text">Test Your File</div>
-                <iframe id="page" name="page" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
-
-                </iframe>
-            </div>
-            <div class="wrapper">
-                    <div class="text">File Tree</div>
-                    <div id="tree"></div>
+                <div class="container">
+                    <div class="wrapper">
+                        <div class="text">Test Your File</div>
+                        <iframe id="page" name="page" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">    </iframe>
+                    </div>
+                    <div class="wrapper">
+                        <div class="text">File Tree</div>
+                        <div id="tree"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -107,7 +110,7 @@
                                 if(entries[i].isFile){
                                     
                                     entries[i].file(file=>{
-                                        console.log(createFileNode(node, file))
+                                        createFileNode(node, file);
                                     }, err=>console.error(err.message));
                                     
                                 }else if(entries[i].isDirectory){
@@ -130,7 +133,7 @@
             dropZone.addEventListener("dragover", function(e){
                 e.preventDefault();     //prevent browser handling
                 e.stopPropagation();
-                dropZone.style.backgroundColor = "gray";
+                dropZone.style.backgroundColor = "cornflowerblue";
             }, false);
             dropZone.addEventListener("dragleave", function(e){
                 e.preventDefault();     //prevent browser handling
@@ -194,7 +197,7 @@
 
             function createAnchorNode(target, file){
                 console.log(file);
-                let reader = new FileReader();
+                //let reader = new FileReader();
                 let a = document.createElement("a");
                 let text = document.createTextNode(file.name);
                 a.appendChild(text);
@@ -207,7 +210,7 @@
                 
             }
 
-            
+
             inputfile.addEventListener("change", function(){
                 console.log(this.files);
                 for(let i = 0; i < this.files.length; i++){
