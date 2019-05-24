@@ -1,0 +1,24 @@
+{
+  "name": "webdemo",
+  "version": "1.0.0",
+  "description": "for study",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/findaw/WebDemo.git"
+  },
+  "author": "findaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/findaw/WebDemo/issues"
+  },
+  "homepage": "https://github.com/findaw/WebDemo#readme",
+  "dependencies": {
+    "express": "^4.17.0",
+    "fs": "0.0.1-security"
+  }
+}
