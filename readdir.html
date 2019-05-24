@@ -7,7 +7,6 @@
         <style>
             .container{
                 display:flex;
-                
                 justify-content : center;
                 list-style-type : none;
             }
@@ -43,8 +42,7 @@
                 overflow-y : auto;
                 padding : 10px;
             }
-            ul{
-                list-style-type : none;
+            #tree ul{
                 padding-left :20px;
                 margin : 5px 0px;
             }
@@ -52,14 +50,33 @@
                 width : 20px;    
                 margin-right : 5px;
             }
-
+            .siteTab{
+                font-size : 0;
+                margin-top : 20px;
+            }
+            #siteTabList{
+                display:inline-block;
+            }
+            #siteTabList li{
+                float : left;
+                padding : 10px 20px;
+                background-color : skyblue;
+                font-size : 1.2rem;
+                cursor: pointer;
+            }
+            #siteTabList li:hover{
+                background-color : royalblue;
+            }
+            #siteTabList #siteTabOn{
+                background-color : royalblue;
+            }
         </style>
     </head>
     <body>
         <header>
             <a href="index.html">
                 <div class="headerWrapper">
-                    <h1>WSDS</h1>
+                    <div id="indexText">WSDS</div>
                 </div>
             </a>
         </header>
@@ -72,9 +89,13 @@
                 <div class="text">
                         이곳에 첨부할 파일을<br/>드래그하세요.
                 </div>
-            
-            <br/><br/><br/>
-
+                <div class="siteTab">
+                    <ul id="siteTabList">
+                        <li id="siteTabOn">site 1</li>
+                        <li>site 2</li>
+                        <li>site 3</li>
+                    </ul>
+                </div>
                 <div class="container">
                     <div class="wrapper">
                         <div class="text">Test Your File</div>
@@ -90,138 +111,7 @@
 
 
 
-        <script type="text/javascript">
-            let inputfile = document.getElementById("attaced");
-            let dropZone = document.getElementById("fileDropZone");
-            let tree = document.getElementById("tree");
-            let page = document.getElementById("page");
-
-            function scanFiles(dir, node){
-                var dirReader = dir.createReader();
-                var promises = [];
-                
-                var readEntries = async (reader, node)=>{
-                    reader.readEntries(entries=>{
-                        if(!entries.length){
-                            console.log("length0");
-                        }else{
-                            for(var i = 0; i < entries.length; i++){
-                                console.log(entries[i]);
-                                if(entries[i].isFile){
-                                    
-                                    entries[i].file(file=>{
-                                        createFileNode(node, file);
-                                    }, err=>console.error(err.message));
-                                    
-                                }else if(entries[i].isDirectory){
-                                    let ulNode = createDirNode(node, entries[i].name);
-                                    readEntries(entries[i].createReader(), ulNode);
-                                }
-                            }
-                        }
-                    }, err=>console.error(err.message));
-                }
-
-                readEntries(dirReader, node);
-            };
-
-
-
-
-
-
-            dropZone.addEventListener("dragover", function(e){
-                e.preventDefault();     //prevent browser handling
-                e.stopPropagation();
-                dropZone.style.backgroundColor = "cornflowerblue";
-            }, false);
-            dropZone.addEventListener("dragleave", function(e){
-                e.preventDefault();     //prevent browser handling
-                e.stopPropagation();
-                dropZone.style.backgroundColor = "white";
-            }, false);
-
-            dropZone.addEventListener("drop", function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                dropZone.style.backgroundColor = "white";
-                
-                let items = e.dataTransfer.items;
-
-                for(let i = 0; i < items.length; i++){
-                    let item = items[i].webkitGetAsEntry();
-                    
-                    if(item.isFile){
-                        createFileNode(tree, items[i].getAsFile());
-
-                    }else if(item.isDirectory){
-                        let ulNode = createDirNode(tree, item.name);
-                        scanFiles(item, ulNode);
-                    }
-                }
-                
-                
-            }, false);
-
-            function createDirNode(target, name){
-                let li = document.createElement("li");
-                let ul = document.createElement("ul");
-                let details = document.createElement("details");
-                details.open = "open";
-                let summary = document.createElement("summary");
-                let text = document.createTextNode(name);
-                let dirImage = document.createElement("img");
-                dirImage.src = "img/directory.png";
-                
-                summary.appendChild(dirImage);
-                summary.appendChild(text);
-                details.appendChild(summary);
-                details.appendChild(ul);
-                li.appendChild(details);
-                target.appendChild(li);
-
-                return ul;
-            }
-
-            function createFileNode(target, file){
-                let fileImage = document.createElement("img");
-                let li = document.createElement("li");
-                
-                fileImage.src = "img/file.png";
-                
-                li.appendChild(fileImage);
-                target.appendChild(li);
-
-                createAnchorNode(li, file);
-            }
-
-            function createAnchorNode(target, file){
-                console.log(file);
-                //let reader = new FileReader();
-                let a = document.createElement("a");
-                let text = document.createTextNode(file.name);
-                a.appendChild(text);
-                
-                let url = URL.createObjectURL(file);
-                a.href = url;
-               // a.download = file.name;
-                a.target = "page"
-                target.appendChild(a);
-                
-            }
-
-
-            inputfile.addEventListener("change", function(){
-                console.log(this.files);
-                for(let i = 0; i < this.files.length; i++){
-                    console.log("name:" + this.files[i].name);
-                    console.log("type:" + this.files[i].type);
-                    console.log("size:" + this.files[i].suze);
-                    console.log("lastModified:" + this.files[i].lastModifiedDate);
-                }   
-            });
-            
-        </script>
+        <script type="text/javascript" src="js/writeFile.js"></script>
 
        
     </body>
