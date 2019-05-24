@@ -5,205 +5,146 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="css/share.css" />
-		<style>
-
-		.category{
-			display:flex;
-			flex-direction : column;
-			align-items: center;
-		}
-		.title{
-			text-align : center;
-			margin-top:100px;
-			margin-bottom : 30px;
-		}
-		.itemContainer{
-			display:flex;
-			justify-content : center;
-			margin:20px;
-		}
-		.itemWrapper{
-			display: flex;
-			flex-direction : column;
-		}
-		.item{
-			padding:20px;
-			margin-bottom : 25px;
-			box-shadow : 1px 1px 7px 1px gray;
-			border-radius : 10px;
-			top : 0px;
-			transition : top 0.2s ease;
-		}
-		.item:hover{
-			position:relative;
-			top:-10px;
-		}
-		.item a{
-			display:flex;
-		}
-		h3{
-			margin: 0px;
-			padding : 5px;
-		}
-		h4{
-			margin : 5px 5px 10px 0px;
-			padding : 5px 10px;
-		}
-		.subtext{
-			width:600px;
-			max-height:120px;
-			padding : 10px;
-			overflow-y : hidden;
-		}
-		@media (max-width : 500px) { .subtext{width : 300px;}}
-		.subtext:hover{
-			overflow-y : auto;
-		}
-		.chip{
-			background-color:lightgreen;	
-			border-radius : 15px;
-			margin : 10px 5px;
-			padding : 4px 10px;
-		}
-		.image{
-			width:80px;
-			float:right;
-		}
-		.image img{
-			width : 100%;
-		}
-		footer{
-			height:150px;
-			background-color : skyblue;
-		}
-		
-
-		
-		</style>
+		<link rel="stylesheet" type="text/css" href="css/category.css" />
 	</head>
 	<body>
-	<header>
-		<a href="index.html">
+		<header>
+			<a href="index.html">
 			<div class="headerWrapper">
-				<h1>WSDS</h1>
+					<div id="indexText">WSDS</div>
+				</div>
+			</a>
+		</header>
+		<div class="navBar">
+			<div class="navWrapper">
+			<ul>
+				<li>
+					<a class="navText" href="write.html">글작성</a>
+				</li>
+				<li>
+					<a class="navText" href="admin.html">관리자 페이지</a>
+				</li>
+			</ul>
+
 			</div>
-		</a>
-	</header>
-	<section class="category">
-		<div class="title">
-			<h2>카테고리이름</h2>
 		</div>
-		<article class="content">
-			내용 subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-			subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-			subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-			subtext subtext subtext subtext subtext subtext<br/>
-		</article>
-	</section>
-	<div class="title">
-		<h2>Case</h2>
-	</div>
-	<div class="itemContainer">
-		<div class="itemWrapper">
-			<div class="item">
-				<a href="#a">
-					<div class="itemWrapper">
-						<div>
-							<h3>Case 1</h3>
-						</div>
-						<div class="subtext">
-							간략한설명
-						</div>
-						<div>
-							<h4>tech</h4>
-						</div>
-						<div class="chipline">
-							<span class="chip">iframe</span><span class="chip">cors</span><span class="chip">ajax</span><span class="chip">cookie</span>
-						</div>
-					</div>
-					<div class="image">
-						<img src="img/antivirus.png" />
-					</div>
-				</a>
+
+		<div class="category">
+			<div class="title">
+				<h2>카테고리이름</h2>
 			</div>
-			<div class="item">
-				<a href="#b">
-					<div class="itemWrapper">
-						<div>
-							<h3>Case 2</h3>
+			<article class="content">
+				내용 subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+				subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+				subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+				subtext subtext subtext subtext subtext subtext<br/>
+			</article>
+		</div>
+
+		<div class="title">
+			<h2>Case</h2>
+		</div>
+		<div class="itemContainer">
+			<div class="itemWrapper">
+				<div class="item">
+					<a href="#a">
+						<div class="itemWrapper">
+							<div>
+								<h3>Case 1</h3>
+							</div>
+							<div class="subtext">
+								간략한설명
+							</div>
+							<div>
+								<h4>tech</h4>
+							</div>
+							<div class="chipline">
+								<span class="chip">iframe</span><span class="chip">cors</span><span class="chip">ajax</span><span class="chip">cookie</span>
+							</div>
 						</div>
-						<div class="subtext">
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+						<div class="image">
+							<img src="img/antivirus.png" />
 						</div>
-						<div>
-							<h4>tech</h4>
+					</a>
+				</div>
+				<div class="item">
+					<a href="#b">
+						<div class="itemWrapper">
+							<div>
+								<h3>Case 2</h3>
+							</div>
+							<div class="subtext">
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							</div>
+							<div>
+								<h4>tech</h4>
+							</div>
+							<div class="chipline">
+								<span class="chip">iframe</span><span class="chip">cors</span>
+							</div>
 						</div>
-						<div class="chipline">
-							<span class="chip">iframe</span><span class="chip">cors</span>
+						<div class="image">
+							<img src="img/ui.png" />
 						</div>
-					</div>
-					<div class="image">
-						<img src="img/ui.png" />
-					</div>
-				</a>
-			</div>
-			<div class="item">
-				<a href="#c" >
-					<div class="itemWrapper">
-						<div>
-							<h3>Case 3</h3>
+					</a>
+				</div>
+				<div class="item">
+					<a href="#c" >
+						<div class="itemWrapper">
+							<div>
+								<h3>Case 3</h3>
+							</div>
+							<div class="subtext">
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							</div>
+							<div>
+								<h4>tech</h4>
+							</div>
+							<div class="chipline">
+								<span class="chip">iframe</span><span class="chip">cors</span>
+							</div>
 						</div>
-						<div class="subtext">
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+						<div class="image">
+							<img src="img/danger.png" />
 						</div>
-						<div>
-							<h4>tech</h4>
+					</a>
+				</div>
+				<div class="item">
+					<a href="#d">
+						<div class="itemWrapper">
+							<div>
+								<h3>Case 4</h3>
+							</div>
+							<div class="subtext">
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+								subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
+							</div>
+							<div>
+								<h4>tech</h4>
+							</div>
+							<div class="chipline">
+								<span class="chip">iframe</span><span class="chip">cors</span>
+							</div>
 						</div>
-						<div class="chipline">
-							<span class="chip">iframe</span><span class="chip">cors</span>
+						<div class="image">
+							<img src="img/protection.png" />
 						</div>
-					</div>
-					<div class="image">
-						<img src="img/danger.png" />
-					</div>
-				</a>
-			</div>
-			<div class="item">
-				<a href="#d">
-					<div class="itemWrapper">
-						<div>
-							<h3>Case 4</h3>
-						</div>
-						<div class="subtext">
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-							subtext subtext subtext subtext subtext subtext subtext subtext subtext subtext<br/>
-						</div>
-						<div>
-							<h4>tech</h4>
-						</div>
-						<div class="chipline">
-							<span class="chip">iframe</span><span class="chip">cors</span>
-						</div>
-					</div>
-					<div class="image">
-						<img src="img/protection.png" />
-					</div>
-				</a>
-			</div>
-		</div> <!-- wrapper -->
-	</div> <!-- container -->
-	<footer>
-		푸터
-	</footer>
+					</a>
+				</div>
+			</div> <!-- wrapper -->
+		</div> <!-- container -->
+		<footer>
+			푸터
+		</footer>
 
 	</body>
 </html>

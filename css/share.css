@@ -17,22 +17,34 @@ header{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ffd4', endColorstr='#c43ae0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     display:flex;
     justify-content: center;
-    width:100%;
     height:50px;
 }
-.headerWrapper {
+header a{
     display:flex;
-    justify-content: left;
-    width:900px;
+    width : 1000px;
 }
-.headerWrapper a{
-    color : white;
-    
+.headerWrapper{
+    margin-left : 50px;
 }
 #indexText{
     font-size : 35px;
-    padding-left : 50px;
-    margin:0px;
-    text-align : center;
     font-weight: 600;
+
+    margin:0px;
+    color : white;
+
+}
+.navBar {
+    display:flex;
+    justify-content : center;;
+}
+.navBar div{
+    width : 900px;
+}
+.navWrapper ul{
+    float:right;
+}
+.navBar ul li{
+    float : left;
+    margin : 15px;
 }
