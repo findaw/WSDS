@@ -1,40 +1,39 @@
 const express = require('express');
 const app = express();
-const clientDir = "./client";
 const fs = require("fs");
+const path = require("path");
+
+app.set("view engine", "ejs");
+//app.set("views", path.join(__dirname, "client/dynamic"));
 
 app.use(express.json());    //to read request body
-app.use(express.static("client"));
+app.use(express.static("client/public"));
+
+
+
+app.use("/category", require("./routes/categoryRoute"));
+app.use("/write", require("./routes/writeRoute"));
+app.use("/login", require("./routes/loginRoute"));
+
+
 app.get('/', (req, res)=>{
     console.log(req);
-    fs.readFile("./client/view/index.html", (err, data)=>{
-        console.log(data);
-        res.type('.html').status(200).send(data).end();
-    });
-
     
-});
-app.get('/category', (req, res)=>{
-    console.log(req);
-    fs.readFile("./client/view/category.html", (err, data)=>{
-        console.log(data);
-        res.type('.html').status(200).send(data).end();
-    });
+    res.render("index");
 
     
 });
 
-app.get('/write', (req, res)=>{
-    console.log(req);
-    fs.readFile("./client/view/write.html", (err, data)=>{
-        console.log(data);
+
+app.get('/readdir', (req, res)=>{
+    fs.readFile("./client/view/readdir.html", (err, data)=>{
         res.type('.html').status(200).send(data).end();
     });
 
     
 });
 
-app.listen(3000, ()=> console.log("listening on 3000 port"));
+app.listen(4000, ()=> console.log("listening on 3000 port"));
 
 
 

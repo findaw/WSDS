@@ -1,0 +1,21 @@
+<div id="formContainer">
+    <div id="formWrapper">
+        <div id="formText">
+            Login
+        </div>
+        <form action="/login/check" method="POST" id="loginForm">
+            <div class="inputWrapper">
+                <input type="text" id="id" name="id" placeholder="아이디" autocomplete="off" />
+                <label></label>
+            </div>
+            <div class="inputWrapper">
+                <input type="password" id="pw" name="password" placeholder="비밀번호"/>
+            </div>
+            <div class="inputWrapper">
+                <input type="submit" id="submitBtn" value="로그인"/>
+            </div>
+        </form>
+        <div id="loginMessage" class="loginMessageOff">
+        </div>
+    </div>
+</div>

@@ -49,3 +49,7 @@ header a{
     float : left;
     margin : 15px;
 }
+footer{
+    height:150px;
+    background-color : paleturquoise;
+}

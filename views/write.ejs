@@ -1,0 +1,46 @@
+<div class="container">
+    <!-- Option Selector -->
+    <div class="btn-group margin">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            글 종류 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">Category</a></li>
+            <li><a href="#">Sample</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
+
+    <!-- Title Input -->
+    <div class="input-group margin">
+        <span class="input-group-addon" id="sizing-addon2">샘플 제목</span>
+        <input type="text" class="form-control" placeholder="입력" aria-describedby="sizing-addon2">
+    </div>
+
+    <!-- Editor -->
+    <div class="editor margin">
+        <div id="summernote">Hello Summernote</div>
+    </div>
+
+    <!-- attachment Button -->
+    <button type="button" class="btn btn-primary margin">첨부파일</button>
+
+    <!-- Submit Button -->
+    <button type="button" class="btn btn-success margin">완료</button>
+
+    
+</div>
+
+
+    
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 600,                 // set editor height
+            width: 700,             // set maximum height of editor
+            focus: true                  // set focus to editable area after initializing summernote
+        });
+    });
+</script>

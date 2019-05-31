@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="css/share.css" />
+
+    <%
+        if(type==="category"){
+    %>
+            <link rel="stylesheet" type="text/css" href="css/category.css" />
+    <%
+        }else if(type==="login"){
+    %>
+            <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <%
+        }else if(type==="write"){
+    %>
+            <link rel="stylesheet" type="text/css" href="css/write.css" />
+            <!-- include libraries(jQuery, bootstrap) -->
+            <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+            <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+            
+            <!-- include summernote css/js -->
+            <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+    <%  
+        }   
+    %>
+    </head>
+    <body>
+        <header>
+            <a href="/">
+            <div class="headerWrapper">
+                    <div id="indexText">WSDS</div>
+                </div>
+            </a>
+        </header>
+        
+    <%if(admin){%>
+        <div class="navBar">
+            <div class="navWrapper">
+                <ul>
+                    <li>
+                        <a class="navText" href="login">로그인</a>
+                    </li>
+                    <li>
+                        <a class="navText" href="write">글작성</a>
+                    </li>
+                    <li>
+                        <a class="navText" href="admin">관리자 페이지</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <%}%>
+
+    
+    <%
+        if(type==="category"){
+    %>
+        <%- include category.ejs%>
+    <%
+        }else if(type==="login"){
+    %>
+        <%- include login.ejs%>
+    <%
+        }else if(type==="write"){
+    %>
+        <%- include write.ejs %>
+    <%
+        }
+    %>
+       
+        <footer>푸터</footer>
+
+        <% if(type==="category"){ %>
+
+        <% }else if(type==="login"){ %>
+            <script type="text/javascript" src="js/login.js"></script>
+        <% } %>
+    </body>
+</html>

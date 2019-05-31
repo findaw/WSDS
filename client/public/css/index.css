@@ -1,0 +1,109 @@
+body{margin :0px;}
+a{	text-decoration:none; color:black;}
+header{
+    background: rgb(71,255,212); /* Old browsers */
+    background: -moz-linear-gradient(45deg, rgba(71,255,212,1) 0%, rgba(67,143,224,1) 52%, rgba(196,58,224,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ffd4', endColorstr='#c43ae0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    height:200px;
+    display:flex;
+    justify-content: center;
+}
+header a{
+    display:flex;
+    justify-content: left;
+    width:800px;
+}
+.headerwrapper {
+    width : 100%;
+    position:relative;
+    color : white;
+}
+.headerwrapper h1{
+    padding-left : 30px;
+    margin:0px;
+    position:absolute;
+    bottom:0px;
+}
+.navBar {
+    display:flex;
+    justify-content : center;;
+}
+.navBar div{
+    width : 900px;
+}
+.navWrapper ul{
+    float:right;
+    list-style : none;
+}
+.navBar ul li{
+    float : left;
+    margin : 15px;
+}
+.cardContainer{
+    display:flex;
+    flex-direction: column;
+    align-items : center;
+    margin:50px;
+}
+.cardWrapper{
+    display:flex;
+    justify-content: center;
+    align-content : flex-start;
+    margin : 5px;
+}
+.card{
+    width : 170px;
+    height : 260px;
+    border-radius : 8px;
+    box-shadow : 1px 1px 5px 1px gray; /*x y blur spread color*/
+    top : 0px;
+    transition : top 0.2s ease;
+    margin : 10px;
+}
+.card:hover{
+    position:relative;
+    top:-10px;
+}
+.card a{
+    display:flex;
+    flex-direction : column;
+    align-items : center;
+}
+.card .image{
+    height:70px; 
+    background-color :lavender;
+    width:88%;
+    text-align: center;
+}
+.card img{
+    flex-shrink : 1;
+    height:100%;
+}
+.card section{
+    padding:10px;
+}
+.card h2{
+    margin : 10px;
+}
+.card .content{
+    flex-grow : 4;
+    height : 65px;
+    overflow-y :hidden;
+}
+.content{
+    margin-bottom : 7px;
+}
+.content:hover{
+    overflow-y :auto;
+}
+.title{
+    text-align: center;
+    margin-top : 100px;
+    font-size : 1.7rem;
+}
+footer{
+    background-color : paleturquoise;
+    height:150px;
+}

@@ -114,7 +114,7 @@ function createAnchorNode(target, file){
     
     a.target = "page"
     target.appendChild(a);
-    
+    console.log(inputfile.files);
 }
 
 
