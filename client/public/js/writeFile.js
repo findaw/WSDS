@@ -1,8 +1,28 @@
-let inputfile = document.getElementById("attaced");
 let dropZone = document.getElementById("fileDropZone");
 let tree = document.getElementById("tree");
 let pages = {};
-let onPage = 1;
+let siteNum = 0;
+let formDatas = [new FormData(),];
+const submitBtn = document.getElementById("submitBtn");
+
+submitBtn.addEventListener("click", e=>{
+    const forms = new FormData();
+    formDatas.forEach(form=>{
+        for(pair of form.entries()){
+            console.log(pair[1]);
+            forms.append(pair[0], pair[1]);
+        }
+    });
+    
+    fetch("/readdir/file", {
+        method : "POST",
+        body : forms,
+    }).then(res=>{
+        console.log(res);
+    }).catch(err=>{
+        console.error(err.message);
+    });
+});
 
 function scanFiles(dir, node){
     let dirReader = dir.createReader();
@@ -13,11 +33,11 @@ function scanFiles(dir, node){
                 console.log("length0");
             }else{
                 for(var i = 0; i < entries.length; i++){
-                    console.log(entries[i]);
+                    const path = entries[i].fullPath;
+
                     if(entries[i].isFile){
-                        
                         entries[i].file(file=>{
-                            createFileNode(node, file);
+                            createFileNode(node, file, path);
                         }, err=>console.error(err.message));
                         
                     }else if(entries[i].isDirectory){
@@ -59,8 +79,8 @@ dropZone.addEventListener("drop", function(e){
         let item = items[i].webkitGetAsEntry();
         
         if(item.isFile){
-            createFileNode(tree, items[i].getAsFile());
-
+            console.log("path : " + item.fullPath);
+            createFileNode(tree, items[i].getAsFile(), item.fullPath);
         }else if(item.isDirectory){
             let ulNode = createDirNode(tree, item.name);
             scanFiles(item, ulNode);
@@ -90,7 +110,7 @@ function createDirNode(target, name){
     return ul;
 }
 
-function createFileNode(target, file){
+function createFileNode(target, file, path){
     let fileImage = document.createElement("img");
     let li = document.createElement("li");
     
@@ -98,8 +118,11 @@ function createFileNode(target, file){
     
     li.appendChild(fileImage);
     target.appendChild(li);
-
+    
     createAnchorNode(li, file);
+
+    //file.filePath = path;
+    formDatas[siteNum].append(path, file);
 }
 
 function createAnchorNode(target, file){
@@ -114,19 +137,9 @@ function createAnchorNode(target, file){
     
     a.target = "page"
     target.appendChild(a);
-    console.log(inputfile.files);
+
 }
 
-
-inputfile.addEventListener("change", function(){
-    console.log(this.files);
-    for(let i = 0; i < this.files.length; i++){
-        console.log("name:" + this.files[i].name);
-        console.log("type:" + this.files[i].type);
-        console.log("size:" + this.files[i].suze);
-        console.log("lastModified:" + this.files[i].lastModifiedDate);
-    }   
-});
 
 let siteTab = document.querySelector("#siteTabList");
 
