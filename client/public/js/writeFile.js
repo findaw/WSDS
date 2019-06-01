@@ -1,9 +1,13 @@
-let dropZone = document.getElementById("fileDropZone");
-let tree = document.getElementById("tree");
+const dropZone = document.getElementById("fileDropZone");
+const tree = document.getElementById("tree");
 let pages = {};
 let siteNum = 0;
 let formDatas = [new FormData(),];
 const submitBtn = document.getElementById("submitBtn");
+const tabWrap= document.getElementById("tabWrap");
+const tabAddBtn = document.getElementById("tabAddBtn");
+let tabDeleteBtn = new Array(...document.querySelectorAll(".tabDeleteBtn"));
+let dirEntry = [];
 
 submitBtn.addEventListener("click", e=>{
     const forms = new FormData();
@@ -75,16 +79,22 @@ dropZone.addEventListener("drop", function(e){
     
     let items = e.dataTransfer.items;
 
-    for(let i = 0; i < items.length; i++){
-        let item = items[i].webkitGetAsEntry();
-        
-        if(item.isFile){
-            console.log("path : " + item.fullPath);
-            createFileNode(tree, items[i].getAsFile(), item.fullPath);
-        }else if(item.isDirectory){
+    if(items.length > 1){
+        alert("루트디렉토리로 파일을 모아주세요.");
+        return;
+    }else{
+        let item = items[0].webkitGetAsEntry();
+
+        if(item.name.indexOf(".") > 1){
+            alert("디렉토리이름에 .(점) 을 넣을 수 없습니다.");
+            return;
+        }
+        else if(item.isDirectory){
+            addTab(null, item.name);
             let ulNode = createDirNode(tree, item.name);
             scanFiles(item, ulNode);
         }
+        
     }
     
     
@@ -111,18 +121,29 @@ function createDirNode(target, name){
 }
 
 function createFileNode(target, file, path){
-    let fileImage = document.createElement("img");
     let li = document.createElement("li");
     
-    fileImage.src = "img/file.png";
+    addFileImgNode(li, file);
     
-    li.appendChild(fileImage);
     target.appendChild(li);
     
     createAnchorNode(li, file);
 
     //file.filePath = path;
     formDatas[siteNum].append(path, file);
+}
+
+function addFileImgNode(target, file){
+    let fileImage = document.createElement("img");
+    let type = file.type.split("/");
+    switch(type[type.length-1]){
+        case 'html':  case 'css': case 'json':  case 'javascript':  case 'png': case 'jpg': case 'gif':
+            fileImage.src = "img/" + type[type.length-1] + ".png";
+            break;
+        default:
+            fileImage.src = "img/file.png"
+    }
+    target.appendChild(fileImage);
 }
 
 function createAnchorNode(target, file){
@@ -141,10 +162,8 @@ function createAnchorNode(target, file){
 }
 
 
-let siteTab = document.querySelector("#siteTabList");
-
-siteTab.addEventListener("click", function (e){
-    siteTab.childNodes.forEach(node=>{
+tabWrap.addEventListener("click", function (e){
+    tabWrap.childNodes.forEach(node=>{
         if(node.tagName === "LI"){
             node.id = "";
         }
@@ -153,4 +172,37 @@ siteTab.addEventListener("click", function (e){
         }
     });
 });
+tabAddBtn.addEventListener("click", addTab);
+
+function addTab(e, title=""){
+    console.log(title);
+    let li = document.createElement("li");
+    let img = document.createElement("img");
+
+    img.className = "tabDeleteBtn";
+    img.src = "img/minus-gradient.png";
+    img.onclick = deleteTab;
+
+    let text = title;
+    if(text.trim() === ""){
+        text = "site " + (tabWrap.childElementCount + 1);
+    }
+    li.innerText = text;
+    li.appendChild(img);
+    tabWrap.appendChild(li);
+
+    formDatas.push(new FormData());
+    tabDeleteBtn.push(img);
+}
+function deleteTab(e){
+    console.log(this);
+    let index = tabDeleteBtn.indexOf(e.target);
+    formDatas.splice(index, 1);
+    tabDeleteBtn.splice(index, 1);
+    tabWrap.removeChild(e.target.parentNode);
+}
+
+function createTree(data){
+
+}
 
