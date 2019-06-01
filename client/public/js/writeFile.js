@@ -8,6 +8,7 @@ const tabWrap= document.getElementById("tabWrap");
 const tabAddBtn = document.getElementById("tabAddBtn");
 let tabDeleteBtn = new Array(...document.querySelectorAll(".tabDeleteBtn"));
 let dirEntry = [];
+const code = document.getElementById("code");
 
 /* 서버전송 */
 submitBtn.addEventListener("click", e=>{
@@ -72,17 +73,37 @@ function addFileImgNode(target, file){
     target.appendChild(fileImage);
 }
 
-function createAnchorNode(target, file){
+function fileToString(file){
+    return new Promise((resolve, reject) =>{
+        const reader = new FileReader();
+        reader.onload = function(e){
+            let data = e.target.result;
+            resolve(data);
+        }
+        reader.onerror = reject;
+
+        reader.readAsText(file, "utf-8");
+    });
+}
+
+async function createAnchorNode(target, file){
     console.log(file);
-    
+
     let a = document.createElement("a");
     let text = document.createTextNode(file.name);
-    a.appendChild(text);
-    
-    let url = URL.createObjectURL(file);
+    let type = file.type.split("/");
+    let data = file;
+
+
+    if(type[1] === "html"){
+        //iframe에서 (HTML파일을) 코드로 출력하기 위해 string 형으로 변경
+        data = await fileToString(file);
+        data = new Blob([data]);  
+    }
+    let url = URL.createObjectURL(data);
     a.href = url;
-    
     a.target = "page"
+    a.appendChild(text);
     target.appendChild(a);
 }
 
@@ -166,6 +187,7 @@ dropZone.addEventListener("drop", function(e){
 
 /** tab 관련 함수 */
 tabWrap.addEventListener("click", e=>{
+    if(e.target.tagName === "IMG") return;
     const index = changeOnTab(e);
     console.log(dirEntry);
     console.log(index);
@@ -195,7 +217,7 @@ function addTab(e, title=""){
 
     img.className = "tabDeleteBtn";
     img.src = "img/minus-gradient.png";
-    img.onclick = deleteTab;
+    img.onclick = deleteTab(img);
 
     let text = title;
     if(text.trim() === ""){
@@ -210,11 +232,14 @@ function addTab(e, title=""){
     return li;
 }
 
-function deleteTab({target}){
-    let index = tabDeleteBtn.indexOf(target);
+const deleteTab = img => (e)=>{
+    if(!e)return;
+    let index = tabDeleteBtn.indexOf(img);
     formDatas.splice(index, 1);
+    dirEntry.splice(index, 1);
     tabDeleteBtn.splice(index, 1);
-    tabWrap.removeChild(target.parentNode);
+    tabWrap.removeChild(img.parentNode);
+    tree.innerHTML = "";
 }
 
 tabAddBtn.addEventListener("click", addTab);
