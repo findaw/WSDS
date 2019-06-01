@@ -2,13 +2,14 @@ const dropZone = document.getElementById("fileDropZone");
 const tree = document.getElementById("tree");
 let pages = {};
 let siteNum = 0;
-let formDatas = [new FormData(),];
+let formDatas = [];
 const submitBtn = document.getElementById("submitBtn");
 const tabWrap= document.getElementById("tabWrap");
 const tabAddBtn = document.getElementById("tabAddBtn");
 let tabDeleteBtn = new Array(...document.querySelectorAll(".tabDeleteBtn"));
 let dirEntry = [];
 
+/* 서버전송 */
 submitBtn.addEventListener("click", e=>{
     const forms = new FormData();
     formDatas.forEach(form=>{
@@ -28,6 +29,72 @@ submitBtn.addEventListener("click", e=>{
     });
 });
 
+/** 트리 관련 함수 */
+/* 노드 생성 함수 */
+function createDirNode(target, name){
+    let li = document.createElement("li");
+    let ul = document.createElement("ul");
+    let details = document.createElement("details");
+    details.open = "open";
+    let summary = document.createElement("summary");
+    let text = document.createTextNode(name);
+    let dirImage = document.createElement("img");
+    dirImage.src = "img/directory.png";
+    
+    summary.appendChild(dirImage);
+    summary.appendChild(text);
+    details.appendChild(summary);
+    details.appendChild(ul);
+    li.appendChild(details);
+    target.appendChild(li);
+
+    return ul;
+}
+
+function createFileNode(target, file, path){
+    let li = document.createElement("li");
+    addFileImgNode(li, file);
+    target.appendChild(li);
+    createAnchorNode(li, file);
+    formDatas[siteNum].append(path, file);
+}
+
+function addFileImgNode(target, file){
+    let fileImage = document.createElement("img");
+    let type = file.type.split("/");
+    switch(type[type.length-1]){
+        case 'html':  case 'css': case 'json':  case 'javascript':  case 'png': case 'jpg': case 'gif':
+            fileImage.src = "img/" + type[type.length-1] + ".png";
+            break;
+        default:
+            fileImage.src = "img/file.png"
+    }
+    target.appendChild(fileImage);
+}
+
+function createAnchorNode(target, file){
+    console.log(file);
+    
+    let a = document.createElement("a");
+    let text = document.createTextNode(file.name);
+    a.appendChild(text);
+    
+    let url = URL.createObjectURL(file);
+    a.href = url;
+    
+    a.target = "page"
+    target.appendChild(a);
+}
+
+/** 디렉토리 트리 관련 함수 */
+function createTree(entry){
+    tree.innerHTML = ""; 
+    console.log(entry);
+    let ulNode = createDirNode(tree, entry.name);
+    scanFiles(entry, ulNode);  
+}
+
+/* FileSystemEntry 스캔 함수 */
 function scanFiles(dir, node){
     let dirReader = dir.createReader();
     
@@ -57,15 +124,12 @@ function scanFiles(dir, node){
 };
 
 
-
-
-
-
 dropZone.addEventListener("dragover", function(e){
     e.preventDefault();     //prevent browser handling
     e.stopPropagation();
     dropZone.style.backgroundColor = "cornflowerblue";
 }, false);
+
 dropZone.addEventListener("dragleave", function(e){
     e.preventDefault();     //prevent browser handling
     e.stopPropagation();
@@ -90,89 +154,39 @@ dropZone.addEventListener("drop", function(e){
             return;
         }
         else if(item.isDirectory){
-            addTab(null, item.name);
-            let ulNode = createDirNode(tree, item.name);
-            scanFiles(item, ulNode);
+            dirEntry.push(item);
+            const li = addTab(null, item.name);
+            changeOnTab({"target" : li});
+            createTree(item);
         }
-        
     }
-    
-    
 }, false);
 
-function createDirNode(target, name){
-    let li = document.createElement("li");
-    let ul = document.createElement("ul");
-    let details = document.createElement("details");
-    details.open = "open";
-    let summary = document.createElement("summary");
-    let text = document.createTextNode(name);
-    let dirImage = document.createElement("img");
-    dirImage.src = "img/directory.png";
-    
-    summary.appendChild(dirImage);
-    summary.appendChild(text);
-    details.appendChild(summary);
-    details.appendChild(ul);
-    li.appendChild(details);
-    target.appendChild(li);
-
-    return ul;
-}
-
-function createFileNode(target, file, path){
-    let li = document.createElement("li");
-    
-    addFileImgNode(li, file);
-    
-    target.appendChild(li);
-    
-    createAnchorNode(li, file);
-
-    //file.filePath = path;
-    formDatas[siteNum].append(path, file);
-}
-
-function addFileImgNode(target, file){
-    let fileImage = document.createElement("img");
-    let type = file.type.split("/");
-    switch(type[type.length-1]){
-        case 'html':  case 'css': case 'json':  case 'javascript':  case 'png': case 'jpg': case 'gif':
-            fileImage.src = "img/" + type[type.length-1] + ".png";
-            break;
-        default:
-            fileImage.src = "img/file.png"
-    }
-    target.appendChild(fileImage);
-}
-
-function createAnchorNode(target, file){
-    console.log(file);
-    
-    let a = document.createElement("a");
-    let text = document.createTextNode(file.name);
-    a.appendChild(text);
-    
-    let url = URL.createObjectURL(file);
-    a.href = url;
-    
-    a.target = "page"
-    target.appendChild(a);
-
-}
 
 
-tabWrap.addEventListener("click", function (e){
+/** tab 관련 함수 */
+tabWrap.addEventListener("click", e=>{
+    const index = changeOnTab(e);
+    console.log(dirEntry);
+    console.log(index);
+    createTree(dirEntry[index]);
+});
+
+function changeOnTab({target}){
+    let cnt = -1;
+    let index = -1;
     tabWrap.childNodes.forEach(node=>{
         if(node.tagName === "LI"){
+            cnt++;
             node.id = "";
         }
-        if(node === e.target){
+        if(node === target){
+            index = cnt;
             node.id = "siteTabOn";
         }
     });
-});
-tabAddBtn.addEventListener("click", addTab);
+    return index;
+}
 
 function addTab(e, title=""){
     console.log(title);
@@ -193,16 +207,14 @@ function addTab(e, title=""){
 
     formDatas.push(new FormData());
     tabDeleteBtn.push(img);
+    return li;
 }
-function deleteTab(e){
-    console.log(this);
-    let index = tabDeleteBtn.indexOf(e.target);
+
+function deleteTab({target}){
+    let index = tabDeleteBtn.indexOf(target);
     formDatas.splice(index, 1);
     tabDeleteBtn.splice(index, 1);
-    tabWrap.removeChild(e.target.parentNode);
+    tabWrap.removeChild(target.parentNode);
 }
 
-function createTree(data){
-
-}
-
+tabAddBtn.addEventListener("click", addTab);
