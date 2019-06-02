@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" type="text/css" href="css/share.css" />
-
+        <title><%= type %></title>
     <%
         if(type==="category"){
     %>
@@ -17,14 +17,7 @@
         }else if(type==="write"){
     %>
             <link rel="stylesheet" type="text/css" href="css/write.css" />
-            <!-- include libraries(jQuery, bootstrap) -->
-            <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-            <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-            
-            <!-- include summernote css/js -->
-            <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+            <link rel="stylesheet" type="text/css" href="css/tree.css" />
     <%  
         }   
     %>
@@ -38,7 +31,7 @@
             </a>
         </header>
         
-    <%if(admin){%>
+    <%if(admin && type !== "write"){%>
         <div class="navBar">
             <div class="navWrapper">
                 <ul>
@@ -79,6 +72,9 @@
 
         <% }else if(type==="login"){ %>
             <script type="text/javascript" src="js/login.js"></script>
+        <% }else if(type==="write"){ %>
+            <script type="module" src="js/uploadFile.js"></script>
         <% } %>
+
     </body>
 </html>

@@ -10,7 +10,7 @@ let formData = {};
 
 
 const fileTree = new FileTree(
-    document.getElementById("tree"),
+    document.getElementById("tree"), [], null
 );
 
 const treeTab = new TreeTab(
@@ -43,7 +43,9 @@ const createFileForm = ()=>{
 /* 서버전송 */
 submitBtn.addEventListener("click", e=>{
     const form = createFileForm();
-
+    fileTree.dirEntry.forEach(entry=>{
+        form.append("entry", entry);
+    });
     form.append("제목", "제목입");
     form.append("내용", "내용임");
 
@@ -126,7 +128,7 @@ const entryToForm = (entry, form)=>{
 }
 
 /** tab 관련 함수 */
-tabWrap.addEventListener("click", e=>{
+treeTab.tabWrap.addEventListener("click", e=>{
     if(e.target.tagName === "IMG") return;
     const index = treeTab.changeOnTab(e);
     console.log(fileTree.dirEntry);

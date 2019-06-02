@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="css/share.css" />
+        <link rel="stylesheet" type="text/css" href="css/view.css" />
+    </head>
+    <body>
+        <header>
+            <a href="/index">
+                <div class="headerWrapper">
+                    <div id="indexText">WSDS</div>
+                </div>
+            </a>
+        </header>
+
+        <br/><br/><br/>
+        
+        <div class="container">
+            <div class="siteTab">
+                <ul id="tabWrap">
+                </ul>
+            </div>
+            <div class="container">
+                <div class="wrapper">
+                    <div class="text">View Files</div>
+                    <iframe id="page" name="page" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+                </div>
+                <div class="wrapper">
+                    <div class="text">Directory Tree</div>
+                    <div id="tree"></div>
+                </div>
+            </div>
+        </div>    
+
+            <script> 
+            
+            const entry = <%- JSON.stringify(entry) %>;
+            const rootName = "rootName";
+            </script> 
+     
+
+        <script type="module" src="js/view.js"></script>
+    </body>
+</html>

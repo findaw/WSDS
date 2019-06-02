@@ -23,15 +23,17 @@ export class TreeTab{
     addTab = (title) =>{
         console.log(title);
         let li = document.createElement("li");
-        li.innerText = title;
+        
+        const text = document.createTextNode(title);
+        li.appendChild(text);
         
         if(this.deleteBtns !== null){
             let img = document.createElement("img");
-    
+            
             img.className = "tabDeleteBtn";
             img.src = "img/minus-gradient.png";
             img.onclick = this.deleteTab(img);
-    
+            
             li.appendChild(img);
             this.deleteBtns.push(img);
         }

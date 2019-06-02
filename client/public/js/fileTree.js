@@ -1,30 +1,8 @@
 export class FileTree{
-    constructor(treeRoot, dirEntry){
+    constructor(treeRoot, dirEntry, targetName){
         this.tree = treeRoot;
-        this.dirEntry = [];
-    }
-
-    fileToUrl = async(file)=>{
-        let type = file.type.split("/");
-        let data = file;
-        if(type[1] === "html"){
-            //iframe에서 (HTML파일을) 코드로 출력하기 위해 string 형으로 변경
-            data = await this.fileToString(file);
-            data = new Blob([data]);  
-        }
-        return URL.createObjectURL(data);
-    }
-
-    fileToString = (file)=>{
-        return new Promise((resolve, reject) =>{
-            const reader = new FileReader();
-            reader.onload = function(e){
-                let data = e.target.result;
-                resolve(data);
-            }
-            reader.onerror = reject;
-            reader.readAsText(file, "utf-8");
-        });
+        this.dirEntry = dirEntry;
+        this.iframeName = targetName;
     }
     createTree = (entry)=>{
         tree.innerHTML = ""; 
@@ -101,11 +79,39 @@ export class FileTree{
         let a = document.createElement("a");
         let text = document.createTextNode(file.name);
 
-        this.fileToUrl(file).then(res=>{
-            a.href = res;
-            a.target = "page"
-            a.appendChild(text);
-            target.appendChild(a);
+        if(this.iframeName !== null){
+            this.fileToUrl(file).then(res=>{
+                a.href = res;
+                a.target = this.iframeName;
+            });
+        }else{
+            a.href = "#"+file.name;
+        }
+        a.appendChild(text);
+        target.appendChild(a);
+        
+    }
+    
+    fileToUrl = async(file)=>{
+        let type = file.type.split("/");
+        let data = file;
+        if(type[1] === "html"){
+            //iframe에서 (HTML파일을) 코드로 출력하기 위해 string 형으로 변경
+            data = await this.fileToString(file);
+            data = new Blob([data]);  
+        }
+        return URL.createObjectURL(data);
+    }
+
+    fileToString = (file)=>{
+        return new Promise((resolve, reject) =>{
+            const reader = new FileReader();
+            reader.onload = function(e){
+                let data = e.target.result;
+                resolve(data);
+            }
+            reader.onerror = reject;
+            reader.readAsText(file, "utf-8");
         });
     }
 }
