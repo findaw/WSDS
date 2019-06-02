@@ -1,21 +1,23 @@
 <div id="writeContainer">
     <div id="writeWrapper">
         <div id="inputContainer">
-            <label for="title">카테고리 이름</label>
-            <div class="titleWrap">
-                <input type="text" id="title" value="" name="title" />
-            </div>
-            <label for="content">요약 설명</label>
-            <div class="contentWrap">
-                <input type="text" id="summary" value="" name="summary" />
-            </div>
-            <label for="content">설명</label>
-            <div class="contentWrap">
-                <textarea type="text" id="content" value="" name="content"></textarea>
-            </div>
-        </div>
-        <div>
-            <button id="submitBtn">전송</button>
+            <form action="/write/category/check" method="POST" id="categoryForm">
+                <label for="title">카테고리 이름</label>
+                <div class="titleWrap">
+                    <input type="text" id="title" value="" name="title" autocomplete="off"/>
+                </div>
+                <label for="content">요약 설명</label>
+                <div class="contentWrap">
+                    <input type="text" id="summary" value="" name="summary"  autocomplete="off" />
+                </div>
+                <label for="content">설명</label>
+                <div class="contentWrap">
+                    <textarea type="text" id="content" value="" name="content"></textarea>
+                </div>
+                <div>
+                    <button id="submitBtn">전송</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

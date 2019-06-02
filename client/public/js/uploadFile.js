@@ -4,6 +4,8 @@ import {FileTree} from "./fileTree.js";
 
 (function(){
     
+const title = document.getElementById("title");
+const content = document.getElementById("content");    
 const dropZone = document.getElementById("fileDropZone");
 const submitBtn = document.getElementById("submitBtn");
 let formData = {};
@@ -42,12 +44,18 @@ const createFileForm = ()=>{
 
 /* 서버전송 */
 submitBtn.addEventListener("click", e=>{
+    console.log(title.value);
+    console.log(content.value);
+    if(title.value.trim() === "" || content.value.trim() === ""){
+        alert("내용을 모두 채워야합니다.");
+        return false;
+    }
     const form = createFileForm();
     fileTree.dirEntry.forEach(entry=>{
         form.append("entry", entry);
     });
-    form.append("제목", "제목입");
-    form.append("내용", "내용임");
+    form.append("title", title.value);
+    form.append("content", content.value);
 
     fetch("/readdir/file", {
         method : "POST",
@@ -84,8 +92,10 @@ dropZone.addEventListener("drop", function(e){
         return;
     }else{
         let item = items[0].webkitGetAsEntry();
-
-        if(item.name.indexOf(".") > 1){
+        if(item.isFile){
+            alert("파일을 디렉토리에 담아주세요.");
+        }
+        else if(item.name.indexOf(".") > 1){
             alert("디렉토리이름에 .(점) 을 넣을 수 없습니다.");
             return;
         }

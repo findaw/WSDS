@@ -38,10 +38,10 @@ app.get("/view", (req, res)=>{
 
 app.post("/readdir/file", (req, res)=>{
     const form = formidable.IncomingForm();
-    
     form.uploadDir = path.join(__dirname + "/tmp");
     form.parse(req, (err, fields, files)=>{
         console.log(fields);
+        /*
         fs.writeFile("./tmp/entry.bin", fields.entry, (err)=>{
             console.log("엔트리");
         });
@@ -62,15 +62,15 @@ app.post("/readdir/file", (req, res)=>{
                 }
             });
             fs.renameSync(files[key].path, "./upload" + key);
-         });
+        });
+        */
         res.status(200).send("확인");
     });
-})
+});
 
 
 app.use((req, res, next)=>{
     throw new Error(req.url + "not found");
-   
 });
 app.use(function(err, req, res, next){
     console.log(err.stack);

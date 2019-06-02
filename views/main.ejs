@@ -67,9 +67,11 @@
 
         <% }else if(type==="login"){ %>
             <script type="text/javascript" src="js/login.js"></script>
-        <% }else if(type==="write"){ %>
+        <% }else if(type==="writeCase"){ %>
             <script type="module" src="js/uploadFile.js"></script>
-        <% } %>
+        <% }else if(type==="writeCategory"){ %>
+            <script type="text/javascript" src="js/addCategory.js"></script>
+        <%}%>
 
     </body>
 </html>
