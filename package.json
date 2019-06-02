@@ -2,10 +2,10 @@
   "name": "webdemo",
   "version": "1.0.0",
   "description": "for study",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
     "express": "^4.17.0",
     "formidable": "^1.2.1",
     "fs": "0.0.1-security"
+  },
+  "engines" :{
+    "npm" : "6.9.0",
+    "node" : "10.11.0"
   }
 }

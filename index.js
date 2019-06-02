@@ -3,7 +3,7 @@ const app = express();
 const fs = require("fs");
 const path = require("path");
 const formidable = require("formidable");
-
+const PORT = process.env.PORT || 4000;
 app.set("view engine", "ejs");
 //app.set("views", path.join(__dirname, "client/dynamic"));
 
@@ -25,18 +25,20 @@ app.get('/readdir', (req, res)=>{
 });
 
 app.post("/readdir/file", (req, res)=>{
-    console.log(req.files);
     const form = formidable.IncomingForm();
     
     form.uploadDir = path.join(__dirname + "/tmp");
     form.parse(req, (err, fields, files)=>{
+        console.log(fields);
          Object.keys(files).forEach(key=>{
             //console.log(key);   console.log(files[key].path);
-
+            console.log(files[key].type);
+            console.log(files[key].name);
             let uploadPath = path.join(__dirname + "/upload");
             console.log(key.split("/"));
 
             key.split("/").forEach(data=>{
+
                 uploadPath = path.join(uploadPath + "/" + data);
                 //존재하지않는 디렉토리인지 (조건:디렉토리명은 .(점)이 없다가정)
                 if(data.trim() !=="" && !/[a-zA-Z]+\.[a-zA-Z]+$/.test(data) && !fs.existsSync(uploadPath)){                    
@@ -50,7 +52,7 @@ app.post("/readdir/file", (req, res)=>{
     });
 })
 
-app.listen(4000, ()=> console.log("listening on 4000 port"));
+app.listen(PORT, ()=> console.log("server listening"));
 
 
 
