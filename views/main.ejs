@@ -5,22 +5,16 @@
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" type="text/css" href="css/share.css" />
         <title><%= type %></title>
-    <%
-        if(type==="category"){
-    %>
+    <%if(type==="category"){%>
             <link rel="stylesheet" type="text/css" href="css/category.css" />
-    <%
-        }else if(type==="login"){
-    %>
+    <%}else if(type==="login"){%>
             <link rel="stylesheet" type="text/css" href="css/login.css" />
-    <%
-        }else if(type==="write"){
-    %>
-            <link rel="stylesheet" type="text/css" href="css/write.css" />
+    <%}else if(type==="writeCase"){%>
             <link rel="stylesheet" type="text/css" href="css/tree.css" />
-    <%  
-        }   
-    %>
+            <link rel="stylesheet" type="text/css" href="css/write.css" />
+    <%}else if(type==="writeCategory"){%>
+        <link rel="stylesheet" type="text/css" href="css/write.css" />
+    <%}%>
     </head>
     <body>
         <header>
@@ -31,18 +25,25 @@
             </a>
         </header>
         
-    <%if(admin && type !== "write"){%>
+    <%if(admin && type !== "writeCategory" && type!== "writeCase"){%>
         <div class="navBar">
             <div class="navWrapper">
                 <ul>
                     <li>
-                        <a class="navText" href="login">로그인</a>
+                        <a class="navText" href="/login">로그인</a>
                     </li>
+                <%if(type==="category"){%>
                     <li>
-                        <a class="navText" href="write">글작성</a>
+                        <a class="navText" href="/write/case">예제 추가</a>
                     </li>
+                <%}%>
+                <%if(type !=="category"){%>
                     <li>
-                        <a class="navText" href="admin">관리자 페이지</a>
+                        <a class="navText" href="/write/category">카테고리 추가</a>
+                    </li>
+                    <%}%>
+                    <li>
+                        <a class="navText" href="/admin">관리자 페이지</a>
                     </li>
                 </ul>
             </div>
@@ -50,22 +51,16 @@
     <%}%>
 
     
-    <%
-        if(type==="category"){
-    %>
-        <%- include category.ejs%>
-    <%
-        }else if(type==="login"){
-    %>
-        <%- include login.ejs%>
-    <%
-        }else if(type==="write"){
-    %>
-        <%- include write.ejs %>
-    <%
-        }
-    %>
-       
+    <%if(type==="category"){%>
+        <%- include category.ejs %>
+    <%}else if(type==="login"){%>
+        <%- include login.ejs %>
+    <%}else if(type==="writeCase"){%>
+        <%- include writeCase.ejs %>
+    <%}else if(type==="writeCategory"){%>
+        <%- include writeCategory.ejs %>
+    <%}%>
+
         <footer>푸터</footer>
 
         <% if(type==="category"){ %>

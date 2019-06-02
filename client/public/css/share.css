@@ -16,9 +16,10 @@ header{
     background: -webkit-linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(45deg, rgba(71,255,212,1) 0%,rgba(67,143,224,1) 52%,rgba(196,58,224,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ffd4', endColorstr='#c43ae0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    height:50px;
     display:flex;
     justify-content: center;
-    height:50px;
+    box-shadow: 0 3px 10px 3px rgb(133, 155, 150);
 }
 header a{
     display:flex;
@@ -37,7 +38,8 @@ header a{
 }
 .navBar {
     display:flex;
-    justify-content : center;;
+    justify-content : center;
+    margin-top : 15px;
 }
 .navBar div{
     width : 900px;
@@ -52,4 +54,5 @@ header a{
 footer{
     height:150px;
     background-color : paleturquoise;
+    box-shadow : 0px -3px 9px 0px rgb(152, 207, 207);
 }

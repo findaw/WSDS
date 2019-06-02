@@ -9,6 +9,7 @@ header{
     height:200px;
     display:flex;
     justify-content: center;
+    box-shadow: 0 3px 10px 3px rgb(133, 155, 150);
 }
 header a{
     display:flex;
