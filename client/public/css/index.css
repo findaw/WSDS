@@ -105,6 +105,7 @@ header a{
     font-size : 1.7rem;
 }
 footer{
-    background-color : paleturquoise;
     height:150px;
+    background-color : paleturquoise;
+    box-shadow : 0px -3px 9px 0px rgb(152, 207, 207);
 }
