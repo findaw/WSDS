@@ -17,7 +17,7 @@
         },
         {
             "title" : "Fishing",
-            "summary" : "사용자에게 악의적인 공격을 할 수 있는 사이트로 유도합니다.",
+            "summary" : "사용자의 기밀정보를 탈취하기 위해 공격자의 피싱 사이트로 유도합니다.",
             "tag" : "fishing",
             "state" : "active",
         },
@@ -29,7 +29,7 @@
         },
         {
             "title" : "CSRF",
-            "summary" : "의도되지 않은 사이트로 교차 요청을 보내는 공격입니다.",
+            "summary" : "악의적인 사이트로 교차 요청을 보내는 공격입니다.",
             "tag" : "csrf",
             "state" : "inactive",
         },
@@ -50,18 +50,29 @@
                 <section class="image">
                     <img src="img/rnd/2.png" />
                 </section>
-                <div></div>
+                <div>
+                    <div class="inactive">준비중</div>
+                <div>
             </a>
         </div>
      */
     const createCategoryCard = (target, item) =>{
         const card = document.createElement("div");
+        card.className = "card";
+
         const block = document.createElement("div");
-        card.className = "card " + item.state;
+        if(item.state.trim() === "inactive"){
+            const inactive = document.createElement("div");
+            inactive.innerText = "준비중";
+            inactive.className = "inactive";
+            block.appendChild(inactive);
+        }
+
         const a = createAnchorNode(item.tag);
         const title = createTitleNode(item.title);
         const summary = createContentNode(item.summary);
         const img = createImgNode("img/rnd/" + (Math.floor(Math.random() * 5) + 1) + ".png");
+
         a.appendChild(title);
         a.appendChild(summary);
         a.appendChild(img);
@@ -104,7 +115,7 @@
         return section;
     }
     
-    let target;
+    let wrapper;
     for(let i = 0; i < category.length; i++){
         if(i%3 === 0){
             wrapper = document.createElement("div");

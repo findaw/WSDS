@@ -11,6 +11,9 @@ header{
     justify-content: center;
     box-shadow: 0 3px 10px 3px rgb(133, 155, 150);
 }
+h5, h3, h2{
+    margin : 10px 0px 20px 0px;
+}
 header a{
     display:flex;
     justify-content: left;
@@ -86,14 +89,20 @@ header a{
     padding:10px;
 }
 .categoryTitle{
-    font-weight : 5px;
-    margin : 10px;
+    height : 16px;
     text-align: center;
 }
 .card .content{
     flex-grow : 4;
     height : 65px;
     overflow-y :hidden;
+}
+.inactive{
+    margin-top : 5px;
+    padding : 0px 5px;
+    background-color : rgb(74, 196, 50); 
+    border-radius : 10px; 
+    color:white; 
 }
 .content{
     margin-bottom : 7px;
