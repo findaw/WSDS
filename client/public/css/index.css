@@ -85,8 +85,10 @@ header a{
 .card section{
     padding:10px;
 }
-.card h2{
+.categoryTitle{
+    font-weight : 5px;
     margin : 10px;
+    text-align: center;
 }
 .card .content{
     flex-grow : 4;
