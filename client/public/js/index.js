@@ -7,13 +7,13 @@
             "title" : "XSS",
             "summary" : "악성코드를 기입하는 공격입니다.",
             "tag" : "xss",
-            "state" : "active",
+            "state" : "inactive",
         },
         {
             "title" : "SQL Injection",
             "summary" : "SQL 언어를 이용해 DB에 허가되지 않은 조작을 합니다.",
             "tag" : "sql-injection",
-            "state" : "active",
+            "state" : "inactive",
         },
         {
             "title" : "Fishing",
@@ -37,7 +37,7 @@
             "title" : "HTML5 취약점",
             "summary" : "HTML5 에서 발생할 수 있는 공격입니다.",
             "tag" : "html5",
-            "state" : "active",
+            "state" : "inactive",
         },
     ];
     /**
@@ -59,6 +59,7 @@
     const createCategoryCard = (target, item) =>{
         const card = document.createElement("div");
         card.className = "card";
+        let url;;
 
         const block = document.createElement("div");
         if(item.state.trim() === "inactive"){
@@ -66,9 +67,12 @@
             inactive.innerText = "준비중";
             inactive.className = "inactive";
             block.appendChild(inactive);
+            url = "#" + item.tag;
+        }else{
+            url = "/category/" + item.tag
         }
-
-        const a = createAnchorNode(item.tag);
+        
+        const a = createAnchorNode(url);
         const title = createTitleNode(item.title);
         const summary = createContentNode(item.summary);
         const img = createImgNode("img/rnd/" + (Math.floor(Math.random() * 5) + 1) + ".png");
@@ -82,7 +86,7 @@
     }
     const createAnchorNode =(url)=>{
         const a = document.createElement("a");
-        a.href = "/category/" + url;
+        a.href = url;
         return a
     }
     const createTitleNode = (title)=>{

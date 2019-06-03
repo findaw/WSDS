@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 4000;
 app.set("view engine", "ejs");
 //app.set("views", path.join(__dirname, "client/dynamic"));
 
-app.use(express.json());    //to read request body
+app.use(express.json()); 
 app.use(express.static("client/public"));
 
 app.use("/category", require("./routes/categoryRoute"));
@@ -55,7 +55,7 @@ app.post("/readdir/file", (req, res)=>{
             key.split("/").forEach(data=>{
 
                 uploadPath = path.join(uploadPath + "/" + data);
-                //존재하지않는 디렉토리인지 (조건:디렉토리명은 .(점)이 없다가정)
+                //존재하지않는 디렉토리인지 (디렉토리명은 .(점)이 없다가정함)
                 if(data.trim() !=="" && !/[a-zA-Z]+\.[a-zA-Z]+$/.test(data) && !fs.existsSync(uploadPath)){                    
                     console.log("생성" + uploadPath);
                     fs.mkdirSync(uploadPath);

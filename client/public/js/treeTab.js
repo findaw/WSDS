@@ -4,7 +4,7 @@ export class TreeTab{
         this.deleteBtns = deleteBtns;
         this.deleteTab = deleteCallback;
     }
-    changeOnTab = ({target}) => {
+    changeOnTab = (e) => {
         let cnt = -1;
         let index = -1;
         this.tabWrap.childNodes.forEach(node=>{
@@ -12,7 +12,7 @@ export class TreeTab{
                 cnt++;
                 node.id = "";
             }
-            if(node === target){
+            if(node === e.target){
                 index = cnt;
                 node.id = "siteTabOn";
             }

@@ -1,6 +1,13 @@
 label{
     color : rgb(136, 89, 197);
 }
+hr{
+    margin : 30px 0px;
+    border-color :  rgb(245, 210, 242);
+    background-color :  rgb(201, 113, 193);
+    height : 0px;
+    width : 600px;
+}
 input[type="text"]:focus{
     outline : none;
 }
@@ -10,7 +17,6 @@ input[type="text"]:focus{
     margin : 50px 0px;
 }
 .inputWrapper{
-    border-bottom : 1px solid rgb(201, 113, 193);
     margin-bottom : 20px;
 
 }

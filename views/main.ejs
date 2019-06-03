@@ -5,9 +5,8 @@
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" type="text/css" href="css/share.css" />
         <title><%= type %></title>
-    <%if(type==="category"){%>
-            <link rel="stylesheet" type="text/css" href="css/category.css" />
-    <%}else if(type==="login"){%>
+            
+    <%if(type==="login"){%>
             <link rel="stylesheet" type="text/css" href="css/login.css" />
     <%}else if(type==="writeCase"){%>
             <link rel="stylesheet" type="text/css" href="css/tree.css" />
@@ -25,35 +24,28 @@
             </a>
         </header>
         
-    <%if(admin && type !== "writeCategory" && type!== "writeCase"){%>
+    <%if(type !== "writeCategory" && type!== "writeCase"){%>
         <div class="navBar">
             <div class="navWrapper">
                 <ul>
                     <li>
                         <a class="navText" href="/login">로그인</a>
                     </li>
-                <%if(type==="category"){%>
-                    <li>
-                        <a class="navText" href="/write/case">예제 추가</a>
-                    </li>
-                <%}%>
-                <%if(type !=="category"){%>
                     <li>
                         <a class="navText" href="/write/category">카테고리 추가</a>
                     </li>
-                    <%}%>
+                <%if(admin) {%>
                     <li>
                         <a class="navText" href="/admin">관리자 페이지</a>
                     </li>
+                <%}%>
                 </ul>
             </div>
         </div>
     <%}%>
 
     
-    <%if(type==="category"){%>
-        <%- include category.ejs %>
-    <%}else if(type==="login"){%>
+    <%if(type==="login"){%>
         <%- include login.ejs %>
     <%}else if(type==="writeCase"){%>
         <%- include writeCase.ejs %>
@@ -63,9 +55,7 @@
 
         <footer>푸터</footer>
 
-        <% if(type==="category"){ %>
-            
-        <% }else if(type==="login"){ %>
+        <% if(type==="login"){ %>
             <script type="text/javascript" src="js/login.js"></script>
         <% }else if(type==="writeCase"){ %>
             <script type="module" src="js/uploadFile.js"></script>
